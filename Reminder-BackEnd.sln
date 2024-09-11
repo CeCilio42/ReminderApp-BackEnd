@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reminder-BackEnd", "Reminder-BackEnd\Reminder-BackEnd.csproj", "{55F3D4A7-1A01-4145-84B1-DB5D39EDBD7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{C6F9A1FA-6165-40DA-97B9-1F957ED465FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{DD29899A-F0A4-4853-8A8A-0C0E2F9ED886}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55F3D4A7-1A01-4145-84B1-DB5D39EDBD7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F3D4A7-1A01-4145-84B1-DB5D39EDBD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F3D4A7-1A01-4145-84B1-DB5D39EDBD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F3D4A7-1A01-4145-84B1-DB5D39EDBD7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6F9A1FA-6165-40DA-97B9-1F957ED465FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F9A1FA-6165-40DA-97B9-1F957ED465FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F9A1FA-6165-40DA-97B9-1F957ED465FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F9A1FA-6165-40DA-97B9-1F957ED465FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD29899A-F0A4-4853-8A8A-0C0E2F9ED886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD29899A-F0A4-4853-8A8A-0C0E2F9ED886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD29899A-F0A4-4853-8A8A-0C0E2F9ED886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD29899A-F0A4-4853-8A8A-0C0E2F9ED886}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FC72A1F-D25E-4FB1-A966-47C22864E615}
+	EndGlobalSection
+EndGlobal
