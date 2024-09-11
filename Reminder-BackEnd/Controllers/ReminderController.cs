@@ -21,7 +21,7 @@ namespace Reminder_BackEnd.Controllers
 
         [HttpGet]
         [Route("GetReminders")]
-        public IActionResult GetReminders()
+        public IActionResult GetRemindersByUserId()
         {
             int user_id = 3;
             try
