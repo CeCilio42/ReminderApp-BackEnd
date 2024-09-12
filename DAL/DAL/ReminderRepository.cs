@@ -53,7 +53,7 @@ namespace DAL.DAL
 
         public void CreateReminderForUser(Reminder reminder)
         {
-            string query = "INSERT INTO reminder (title, description, url, date, category_id, user_id) VALUES (@title, @description, @url, @date, @category_id, 1)";
+            string query = "INSERT INTO reminder (title, description, url, category_id, user_id) VALUES (@title, @description, 'example.com', @category_id, @user_id)";
             try
             {
                 if (connection.OpenConnection())
@@ -62,10 +62,8 @@ namespace DAL.DAL
                     {
                         cmd.Parameters.AddWithValue("@title", reminder.title);
                         cmd.Parameters.AddWithValue("@description", reminder.description);
-                        cmd.Parameters.AddWithValue("@url", reminder.url);
-                        cmd.Parameters.AddWithValue("@date", reminder.date);
+                        cmd.Parameters.AddWithValue("@user_id", reminder.user.Id);
                         cmd.Parameters.AddWithValue("@category_id", reminder.type);
-                            cmd.Parameters.AddWithValue("@user_id", reminder.user.Id);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -76,6 +74,7 @@ namespace DAL.DAL
                 throw new Exception("An error occurred in the repository: " + ex.Message);
             }
         }
+
 
     }
 }

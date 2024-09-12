@@ -21,8 +21,8 @@ namespace BLL.DTO_s
             description = reminder.description;
             url = reminder.url;
             date = reminder.date;
+            user.Id = reminder.user.Id;
             user.username = reminder.user.username;
-            user.company = reminder.user.company;
             type = reminder.type;
         }
 

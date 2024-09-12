@@ -20,6 +20,8 @@ namespace Reminder_BackEnd
             url = reminderDto.url;
             date = reminderDto.date;
             type = reminderDto.type;
+            user.Id = reminderDto.user.Id;
+            user.username = reminderDto.user.username;
         }
 
         public int id { get; set; }
