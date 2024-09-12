@@ -22,7 +22,7 @@ builder.Services.AddScoped<ReminderService>();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Back-end running");
 app.UseCors("AllowAll");
 app.UseRouting();
 app.UseEndpoints(endpoints =>

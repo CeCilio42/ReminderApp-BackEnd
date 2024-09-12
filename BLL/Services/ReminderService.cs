@@ -28,5 +28,10 @@ namespace BLL.Services
 
             return reminders;
         }
+
+        public ReminderDTO CreateReminderForUser(Reminder reminder)
+        {
+            return new ReminderDTO(reminder); 
+        }
     }
 }

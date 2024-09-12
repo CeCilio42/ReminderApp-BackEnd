@@ -2,6 +2,7 @@
 using BLL.Entitys;
 using BLL.Enums;
 using BLL.Interfaces;
+using MySql.Data.MySqlClient;
 using Reminder_BackEnd;
 using System;
 using System.Collections.Generic;
@@ -15,62 +16,66 @@ namespace DAL.DAL
     public class ReminderRepository : IReminderRepository
     {
 
-        List<ReminderDTO> reminders = new List<ReminderDTO>  // Corrected type
-        {
-    new ReminderDTO(new Reminder
-    {
-        id = 1,
-        title = "Doctor Appointment",
-        description = "Annual check-up with Dr. Smith",
-        url = "http://example.com/appointment",
-        date = "2024-09-15",
-        type = ReminderType.Private,
-        user = new User
-        {
-
-            Id = 2,
-            username = "johndoe",
-            company = "HealthCorp",
-        }
-    }),
-    new ReminderDTO(new Reminder
-    {
-        id = 2,
-        title = "Team Meeting",
-        description = "Monthly team meeting in conference room B",
-        url = "http://example.com/meeting",
-        date = "2024-09-20",
-        type = ReminderType.Work,
-        user = new User
-        {
-            Id = 3,
-            username = "janedoe",
-            company = "TechSoft",
-        }
-    }),
-    new ReminderDTO(new Reminder
-    {
-        id = 3,
-        title = "Project Deadline",
-        description = "Submit final project report",
-        url = "http://example.com/project",
-        date = "2024-09-30",
-        type = ReminderType.Private,
-        user = new User
-        {
-            Id = 4,
-            username = "alicesmith",
-            company = "Consulting Inc.",
-        }
-    })
-    {
-        
-    }
-        };
+        DatabaseConnection connection = new DatabaseConnection();
 
         public List<ReminderDTO> GetRemindersByUserId(int user_id)
         {
+            List<ReminderDTO> reminders = new List<ReminderDTO>();
+            string query = "SELECT id, title, DESCRIPTION, url, DATE, category_id, url FROM reminder WHERE user_id = "+user_id+"";
+            try
+            {
+                if (connection.OpenConnection())
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection.connection);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        ReminderDTO reminderDto = new ReminderDTO();
+                        reminderDto.id = Convert.ToInt32(dataReader["id"]);
+                        reminderDto.title = dataReader["title"].ToString();
+                        reminderDto.description = dataReader["DESCRIPTION"].ToString();
+                        reminderDto.date = dataReader["DATE"].ToString();
+
+                        reminders.Add(reminderDto);
+                    }
+
+                    dataReader.Close();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("An error occurred in the repository: " + ex);
+            }
+
             return reminders;
         }
+
+        public void CreateReminderForUser(Reminder reminder)
+        {
+            string query = "INSERT INTO reminder (title, description, url, date, category_id, user_id) VALUES (@title, @description, @url, @date, @category_id, 1)";
+            try
+            {
+                if (connection.OpenConnection())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection.connection))
+                    {
+                        cmd.Parameters.AddWithValue("@title", reminder.title);
+                        cmd.Parameters.AddWithValue("@description", reminder.description);
+                        cmd.Parameters.AddWithValue("@url", reminder.url);
+                        cmd.Parameters.AddWithValue("@date", reminder.date);
+                        cmd.Parameters.AddWithValue("@category_id", reminder.type);
+                            cmd.Parameters.AddWithValue("@user_id", reminder.user.Id);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception("An error occurred in the repository: " + ex.Message);
+            }
+        }
+
     }
 }
